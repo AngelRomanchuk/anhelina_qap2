@@ -29,9 +29,20 @@
  *
  ******************************************************************************/
 
-function snake(value) {
-  // Replace this comment with your code...
-}
+// function snake(value) {
+//   let space = /[\s.]+/g;
+//   let spaceB = /^\s+/;
+//   let spaceE = /\s+$/;
+//   return value.replace(spaceB, "").replace(spaceE, "").replace(space, "_").toLowerCase(); 
+// }
+// console.log(snake('abc'));
+// console.log(snake(' ABC '));
+// console.log(snake('ABC'));
+// console.log(snake('A BC'));
+// console.log(snake(' A bC '));
+// console.log(snake('A   BC'));
+// console.log(snake('A.BC'));
+// console.log(snake(' A..  B   C '));
 
 /*******************************************************************************
  * Problem 2: create an HTML <video> element for the given url.
@@ -86,9 +97,24 @@ function snake(value) {
  *
  * ******************************************************************************/
 
-function createVideo(src, width, controls) {
-  // Replace this comment with your code...
-}
+// function createVideo(src, width, controls) {
+//   src = src.trim();
+//   if(parseInt(width) === width){
+//     trueWidth = width;
+//   } else {
+//     return "Invalid width number. Please enter the width number."
+//   }
+//   let video = `<video src="${src}" width="${trueWidth}"`;
+
+//   if(controls === true){
+//     video += ` controls></video>`;
+//   } else {
+//     video += `></video>`;
+//   }
+//   console.log(video);
+// }
+// createVideo('http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4', 500);
+// createVideo('http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4', 500, true);
 
 /*******************************************************************************
  * Problem 3: extract Date from date string
@@ -133,8 +159,43 @@ function createVideo(src, width, controls) {
  *
  ******************************************************************************/
 
-function parseDateString(value) {
-  // Replace this comment with your code...
+function parseDateString(dateStr) {
+  if (typeof dateStr !== 'string') {
+    throw new Error('Invalid date string!');
+  }
+
+  let dateRegex = /^(\d{4})\-(\d{2})\-(\d{2})$/;
+  let match = dateStr.match(dateRegex);
+  if(!match){
+    throw new Error('Date string must be in the format YYYY-MM-DD!');
+  }
+
+  let year = parseInt(match[1]);
+  let month = parseInt(match[2]);
+  let day = parseInt(match[3]);
+  if (month < 1 || month > 12 || day < 1 || day > 31) {
+    throw new Error('Date contains invalid numbers!');
+  }
+
+  let date = new Date();
+  date.setFullYear(year);
+  date.setMonth(month - 1);
+  date.setDate(day);
+
+  
+  return date;
+}
+
+try {
+  // console.log(parseDateString('2021-01-01')); // Valid date
+  console.log(parseDateString('2021-09-29')); // Valid date
+  // console.log(parseDateString('01-01-01'));   // Invalid date format
+  // console.log(parseDateString('2021-1-01'));  // Invalid month format
+  // console.log(parseDateString('2021-01-1'));  // Invalid day format
+  // console.log(parseDateString(null));         // Invalid input
+  // console.log(parseDateString("this is totally wrong")); // Invalid input
+} catch (error) {
+  console.error(error.message);
 }
 
 /*******************************************************************************
@@ -159,16 +220,34 @@ function parseDateString(value) {
  * NOTE: it should be possible to use parseDateString() from the previous question
  * and toDateString() to reverse each other. For example:
  *
- * toDateString(parseDateString('2021-01-29)) should return '2021-01-29'
+ * toDateString(parseDateString('2021-01-29')) should return '2021-01-29'
  *
  * If an invalid Date is passed, throw an Error object with an appropriate error message.
  * HINT: use try/catch, see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
  *
  ******************************************************************************/
+function toDateString(dateStr) {
+  let date = parseDateString(dateStr);
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  console.log(day)
 
-function toDateString(value) {
-  // Replace this comment with your code...
+  if(month<10){
+    month = "0" + month;
+  } else {
+    month = month;
+  }
+  if(day<10){
+    day = "0" + day;
+  } else {
+    day = day;
+  }
+
+  return `${year}-${month}-${day}`;
+  
 }
+console.log(toDateString('2021-09-29')); // Valid date
 
 /*******************************************************************************
  * Problem 5: parse a geographic coordinate
