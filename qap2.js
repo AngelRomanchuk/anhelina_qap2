@@ -159,44 +159,44 @@
  *
  ******************************************************************************/
 
-function parseDateString(dateStr) {
-  if (typeof dateStr !== 'string') {
-    throw new Error('Invalid date string!');
-  }
+// function parseDateString(dateStr) {
+//   if (typeof dateStr !== 'string') {
+//     throw new Error('Invalid date string!');
+//   }
 
-  let dateRegex = /^(\d{4})\-(\d{2})\-(\d{2})$/;
-  let match = dateStr.match(dateRegex);
-  if(!match){
-    throw new Error('Date string must be in the format YYYY-MM-DD!');
-  }
+//   let dateRegex = /^(\d{4})\-(\d{2})\-(\d{2})$/;
+//   let match = dateStr.match(dateRegex);
+//   if(!match){
+//     throw new Error('Date string must be in the format YYYY-MM-DD!');
+//   }
 
-  let year = parseInt(match[1]);
-  let month = parseInt(match[2]);
-  let day = parseInt(match[3]);
-  if (month < 1 || month > 12 || day < 1 || day > 31) {
-    throw new Error('Date contains invalid numbers!');
-  }
+//   let year = parseInt(match[1]);
+//   let month = parseInt(match[2]);
+//   let day = parseInt(match[3]);
+// if (month < 1 || month > 12 || day < 1 || day > 31) {
+//     throw new Error('Date contains invalid numbers!');
+//   }
 
-  let date = new Date();
-  date.setFullYear(year);
-  date.setMonth(month - 1);
-  date.setDate(day);
+//   let date = new Date();
+//   date.setFullYear(year);
+//   date.setMonth(month - 1);
+//   date.setDate(day);
 
   
-  return date;
-}
+//   return date;
+// }
 
-try {
-  // console.log(parseDateString('2021-01-01')); // Valid date
-  console.log(parseDateString('2021-09-29')); // Valid date
-  // console.log(parseDateString('01-01-01'));   // Invalid date format
-  // console.log(parseDateString('2021-1-01'));  // Invalid month format
-  // console.log(parseDateString('2021-01-1'));  // Invalid day format
-  // console.log(parseDateString(null));         // Invalid input
-  // console.log(parseDateString("this is totally wrong")); // Invalid input
-} catch (error) {
-  console.error(error.message);
-}
+// try {
+//   // console.log(parseDateString('2021-01-01'));
+//   console.log(parseDateString('2021-09-29'));
+//   // console.log(parseDateString('01-01-01'));  
+//   // console.log(parseDateString('2021-1-01'));  
+//   // console.log(parseDateString('2021-01-1'));  
+//   // console.log(parseDateString(null));         
+//   // console.log(parseDateString("this is totally wrong")); 
+// } catch (error) {
+//   console.error(error.message);
+// }
 
 /*******************************************************************************
  * Problem 4: convert Date to date string with specified format.
@@ -226,28 +226,28 @@ try {
  * HINT: use try/catch, see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
  *
  ******************************************************************************/
-function toDateString(dateStr) {
-  let date = parseDateString(dateStr);
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  console.log(day)
+// function toDateString(dateStr) {
+//   let date = parseDateString(dateStr);
+//   let year = date.getFullYear();
+//   let month = date.getMonth() + 1;
+//   let day = date.getDate();
+//   console.log(day)
 
-  if(month<10){
-    month = "0" + month;
-  } else {
-    month = month;
-  }
-  if(day<10){
-    day = "0" + day;
-  } else {
-    day = day;
-  }
+//   if(month<10){
+//     month = "0" + month;
+//   } else {
+//     month = month;
+//   }
+//   if(day<10){
+//     day = "0" + day;
+//   } else {
+//     day = day;
+//   }
 
-  return `${year}-${month}-${day}`;
+//   return `${year}-${month}-${day}`;
   
-}
-console.log(toDateString('2021-09-29')); // Valid date
+// }
+// console.log(toDateString('2021-09-29')); 
 
 /*******************************************************************************
  * Problem 5: parse a geographic coordinate
@@ -273,9 +273,39 @@ console.log(toDateString('2021-09-29')); // Valid date
  *
  ******************************************************************************/
 
-function normalizeCoord(value) {
-  // Replace this comment with your code...
+function normalizeCoord(coordinateStr) {
+  let coordRegex = /-?\d+\.\d+/g;
+  const coordinates = coordinateStr.match(coordRegex);
+
+  if (coordinates.length === 2) {
+    let latitude, longitude;
+    if (coordinateStr.startsWith("[")) {
+      latitude = parseFloat(coordinates[1]);
+      longitude = parseFloat(coordinates[0]);
+    } else {
+      latitude = parseFloat(coordinates[0]);
+      longitude = parseFloat(coordinates[1]);
+    }
+      
+    if (latitude >= -90 || latitude <= 90 || longitude >= -180 || longitude <= 180) {
+      return `(${latitude}, ${longitude})`;
+    } else {
+      throw new Error("Invalid coordinates: Latitude must be between -90 and 90, Longitude must be between -180 and 180.");
+    }
+  } else {
+    throw new Error("Invalid coordinate format.");
+  }
 }
+
+// Test cases
+try{
+  console.log(normalizeCoord("42.9755,-77.4369")); 
+  console.log(normalizeCoord("[-77.4369, 42.9755]")); 
+} catch(error) {
+  console.error(error.message);
+}
+
+
 
 /*******************************************************************************
  * Problem 6: format any number of coordinates as a list in a string
