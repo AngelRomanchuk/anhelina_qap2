@@ -4,8 +4,8 @@
  *
  * Please update the following with your information:
  *
- *      Name: <YOUR_NAME>
- *      Date: <SUBMISSION_DATE>
+ *      Name: <Anhelina Romanchuk>
+ *      Date: <June 9,2024 - June 11,2024>
  */
 
 /*******************************************************************************
@@ -29,20 +29,20 @@
  *
  ******************************************************************************/
 
-// function snake(value) {
-//   let space = /[\s.]+/g;
-//   let spaceB = /^\s+/;
-//   let spaceE = /\s+$/;
-//   return value.replace(spaceB, "").replace(spaceE, "").replace(space, "_").toLowerCase(); 
-// }
-// console.log(snake('abc'));
-// console.log(snake(' ABC '));
-// console.log(snake('ABC'));
-// console.log(snake('A BC'));
-// console.log(snake(' A bC '));
-// console.log(snake('A   BC'));
-// console.log(snake('A.BC'));
-// console.log(snake(' A..  B   C '));
+function snake(value) {
+  let space = /[\s.]+/g;
+  let spaceB = /^\s+/;
+  let spaceE = /\s+$/;
+  return value.replace(spaceB, "").replace(spaceE, "").replace(space, "_").toLowerCase(); 
+}
+console.log(snake('abc'));
+console.log(snake(' ABC '));
+console.log(snake('ABC'));
+console.log(snake('A BC'));
+console.log(snake(' A bC '));
+console.log(snake('A   BC'));
+console.log(snake('A.BC'));
+console.log(snake(' A..  B   C '));
 
 /*******************************************************************************
  * Problem 2: create an HTML <video> element for the given url.
@@ -97,24 +97,24 @@
  *
  * ******************************************************************************/
 
-// function createVideo(src, width, controls) {
-//   src = src.trim();
-//   if(parseInt(width) === width){
-//     trueWidth = width;
-//   } else {
-//     return "Invalid width number. Please enter the width number."
-//   }
-//   let video = `<video src="${src}" width="${trueWidth}"`;
+function createVideo(src, width, controls) {
+  src = src.trim();
+  if(parseInt(width) === width){
+    trueWidth = width;
+  } else {
+    return "Invalid width number. Please enter the width number."
+  }
+  let video = `<video src="${src}" width="${trueWidth}"`;
 
-//   if(controls === true){
-//     video += ` controls></video>`;
-//   } else {
-//     video += `></video>`;
-//   }
-//   console.log(video);
-// }
-// createVideo('http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4', 500);
-// createVideo('http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4', 500, true);
+  if(controls === true){
+    video += ` controls></video>`;
+  } else {
+    video += `></video>`;
+  }
+  console.log(video);
+}
+createVideo('http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4', 500);
+createVideo('http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4', 500, true);
 
 /*******************************************************************************
  * Problem 3: extract Date from date string
@@ -159,44 +159,44 @@
  *
  ******************************************************************************/
 
-// function parseDateString(dateStr) {
-//   if (typeof dateStr !== 'string') {
-//     throw new Error('Invalid date string!');
-//   }
+function parseDateString(dateStr) {
+  if (typeof dateStr !== 'string') {
+    throw new Error('Invalid date string!');
+  }
 
-//   let dateRegex = /^(\d{4})\-(\d{2})\-(\d{2})$/;
-//   let match = dateStr.match(dateRegex);
-//   if(!match){
-//     throw new Error('Date string must be in the format YYYY-MM-DD!');
-//   }
+  let dateRegex = /^(\d{4})\-(\d{2})\-(\d{2})$/;
+  let match = dateStr.match(dateRegex);
+  if(!match){
+    throw new Error('Date string must be in the format YYYY-MM-DD!');
+  }
 
-//   let year = parseInt(match[1]);
-//   let month = parseInt(match[2]);
-//   let day = parseInt(match[3]);
-// if (month < 1 || month > 12 || day < 1 || day > 31) {
-//     throw new Error('Date contains invalid numbers!');
-//   }
+  let year = parseInt(match[1]);
+  let month = parseInt(match[2]);
+  let day = parseInt(match[3]);
+if (month < 1 || month > 12 || day < 1 || day > 31) {
+    throw new Error('Date contains invalid numbers!');
+  }
 
-//   let date = new Date();
-//   date.setFullYear(year);
-//   date.setMonth(month - 1);
-//   date.setDate(day);
+  let date = new Date();
+  date.setFullYear(year);
+  date.setMonth(month - 1);
+  date.setDate(day);
 
   
-//   return date;
-// }
+  return date;
+}
 
-// try {
-//   // console.log(parseDateString('2021-01-01'));
-//   console.log(parseDateString('2021-09-29'));
-//   // console.log(parseDateString('01-01-01'));  
-//   // console.log(parseDateString('2021-1-01'));  
-//   // console.log(parseDateString('2021-01-1'));  
-//   // console.log(parseDateString(null));         
-//   // console.log(parseDateString("this is totally wrong")); 
-// } catch (error) {
-//   console.error(error.message);
-// }
+try {
+  console.log(parseDateString('2021-01-01'));
+  console.log(parseDateString('2021-09-29'));
+  console.log(parseDateString('01-01-01'));  
+  console.log(parseDateString('2021-1-01'));  
+  console.log(parseDateString('2021-01-1'));  
+  console.log(parseDateString(null));         
+  console.log(parseDateString("this is totally wrong")); 
+} catch (error) {
+  console.error(error.message);
+}
 
 /*******************************************************************************
  * Problem 4: convert Date to date string with specified format.
@@ -226,28 +226,28 @@
  * HINT: use try/catch, see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
  *
  ******************************************************************************/
-// function toDateString(dateStr) {
-//   let date = parseDateString(dateStr);
-//   let year = date.getFullYear();
-//   let month = date.getMonth() + 1;
-//   let day = date.getDate();
-//   console.log(day)
+function toDateString(dateStr) {
+  let date = parseDateString(dateStr);
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  console.log(day)
 
-//   if(month<10){
-//     month = "0" + month;
-//   } else {
-//     month = month;
-//   }
-//   if(day<10){
-//     day = "0" + day;
-//   } else {
-//     day = day;
-//   }
+  if(month<10){
+    month = "0" + month;
+  } else {
+    month = month;
+  }
+  if(day<10){
+    day = "0" + day;
+  } else {
+    day = day;
+  }
 
-//   return `${year}-${month}-${day}`;
+  return `${year}-${month}-${day}`;
   
-// }
-// console.log(toDateString('2021-09-29')); 
+}
+console.log(toDateString('2021-09-29')); 
 
 /*******************************************************************************
  * Problem 5: parse a geographic coordinate
@@ -273,37 +273,37 @@
  *
  ******************************************************************************/
 
-// function normalizeCoord(coordinateStr) {
-//   let coordRegex = /-?\d+\.\d+/g;
-//   const coordinates = coordinateStr.match(coordRegex);
+function normalizeCoord(coordinateStr) {
+  let coordRegex = /-?\d+\.\d+/g;
+  const coordinates = coordinateStr.match(coordRegex);
 
-//   if (coordinates.length === 2) {
-//     let latitude, longitude;
-//     if (coordinateStr.startsWith("[")) {
-//       latitude = parseFloat(coordinates[1]);
-//       longitude = parseFloat(coordinates[0]);
-//     } else {
-//       latitude = parseFloat(coordinates[0]);
-//       longitude = parseFloat(coordinates[1]);
-//     }
+  if (coordinates.length === 2) {
+    let latitude, longitude;
+    if (coordinateStr.startsWith("[")) {
+      latitude = parseFloat(coordinates[1]);
+      longitude = parseFloat(coordinates[0]);
+    } else {
+      latitude = parseFloat(coordinates[0]);
+      longitude = parseFloat(coordinates[1]);
+    }
       
-//     if (latitude >= -90 || latitude <= 90 || longitude >= -180 || longitude <= 180) {
-//       return `(${latitude}, ${longitude})`;
-//     } else {
-//       throw new Error("Invalid coordinates: Latitude must be between -90 and 90, Longitude must be between -180 and 180.");
-//     }
-//   } else {
-//     throw new Error("Invalid coordinate format.");
-//   }
-// }
+    if (latitude >= -90 || latitude <= 90 || longitude >= -180 || longitude <= 180) {
+      return `(${latitude}, ${longitude})`;
+    } else {
+      throw new Error("Invalid coordinates: Latitude must be between -90 and 90, Longitude must be between -180 and 180.");
+    }
+  } else {
+    throw new Error("Invalid coordinate format.");
+  }
+}
 
-// // Test cases
-// try{
-//   console.log(normalizeCoord("42.9755,-77.4369")); 
-//   console.log(normalizeCoord("[-77.4369, 42.9755]")); 
-// } catch(error) {
-//   console.error(error.message);
-// }
+// Test cases
+try{
+  console.log(normalizeCoord("42.9755,-77.4369")); 
+  console.log(normalizeCoord("[-77.4369, 42.9755]")); 
+} catch(error) {
+  console.error(error.message);
+}
 
 
 
@@ -333,23 +333,23 @@
 
  ******************************************************************************/
 
-// function formatCoords(...coordinateStr) {
-//   let formattedCoords = []; // Store values
+function formatCoords(...coordinateStr) {
+  let formattedCoords = []; // Store values
 
-//   for(let coord of coordinateStr){
-//     try{
-//       let coordinate = normalizeCoord(coord);
-//       formattedCoords.push(coordinate);
-//     } catch(error){
-//       console.error();
-//     } 
-//   }
+  for(let coord of coordinateStr){
+    try{
+      let coordinate = normalizeCoord(coord);
+      formattedCoords.push(coordinate);
+    } catch(error){
+      console.error();
+    } 
+  }
 
-//   console.log(`(${formattedCoords.join(', ')})`);
-// }
+  console.log(`(${formattedCoords.join(', ')})`);
+}
 
-// formatCoords("42.9755,-77.4369", "[-62.1234, 42.9755]", "300,-9000");
-// formatCoords("42.9755,-77.4369", "[-62.1234, 42.9755]");
+formatCoords("42.9755,-77.4369", "[-62.1234, 42.9755]", "300,-9000");
+formatCoords("42.9755,-77.4369", "[-62.1234, 42.9755]");
 
 
 /*******************************************************************************
@@ -478,40 +478,40 @@ function mimeFromFilename(filename) {
 // I was looking on the internet is there an easier way to solve this problem and I found this. 
 // I am not sure how this works. Can you please explain it for me. The part that I do not understand is
 // what thoes [] bracets do in the code???
-  // let extensionMap = {
-  //   'txt' : 'text/plain',
-  //   'html': 'text/html',
-  //   'htm': 'text/html',
-  //   'css': 'text/css',
-  //   'js': 'text/javascript',
-  //   'jpg': 'image/jpeg',
-  //   'jpeg': 'image/jpeg',
-  //   'gif': 'image/gif',
-  //   'bmp': 'image/bmp',
-  //   'ico': 'image/x-icon',
-  //   'cur': 'image/x-icon',
-  //   'png': 'image/png',
-  //   'svg': 'image/svg+xml',
-  //   'webp': 'image/webp',
-  //   'mp3': 'audio/mp3',
-  //   'wav': 'audio/wav',
-  //   'mp4': 'video/mp4',
-  //   'webm': 'video/webm',
-  //   'json': 'application/json',
-  //   'mpeg': 'video/mpeg',
-  //   'csv': 'text/csv',
-  //   'ttf': 'font/ttf',
-  //   'woff': 'font/woff',
-  //   'zip': 'application/zip',
-  //   'avi': 'video/x-msvideo'
-  // };
+  let extensionMap = {
+    'txt' : 'text/plain',
+    'html': 'text/html',
+    'htm': 'text/html',
+    'css': 'text/css',
+    'js': 'text/javascript',
+    'jpg': 'image/jpeg',
+    'jpeg': 'image/jpeg',
+    'gif': 'image/gif',
+    'bmp': 'image/bmp',
+    'ico': 'image/x-icon',
+    'cur': 'image/x-icon',
+    'png': 'image/png',
+    'svg': 'image/svg+xml',
+    'webp': 'image/webp',
+    'mp3': 'audio/mp3',
+    'wav': 'audio/wav',
+    'mp4': 'video/mp4',
+    'webm': 'video/webm',
+    'json': 'application/json',
+    'mpeg': 'video/mpeg',
+    'csv': 'text/csv',
+    'ttf': 'font/ttf',
+    'woff': 'font/woff',
+    'zip': 'application/zip',
+    'avi': 'video/x-msvideo'
+  };
 
-  // let defaultType = 'application/octet-stream';
+  let defaultType = 'application/octet-stream';
 
-  // let fileParts = filename.split('.');
-  // let extension = fileParts.length > 1 ? fileParts[fileParts.length - 1] : '';
+  let fileParts = filename.split('.');
+  let extension = fileParts.length > 1 ? fileParts[fileParts.length - 1] : '';
 
-  // return extensionMap[extension.toLowerCase()] || defaultType;
+  return extensionMap[extension.toLowerCase()] || defaultType;
 }
 
 console.log(mimeFromFilename('/User/Documents/readme.txt')); 
@@ -572,8 +572,31 @@ console.log(mimeFromFilename('file.unknown'));
  ******************************************************************************/
 
 function generateLicenseLink(licenseCode, targetBlank) {
-  // Replace this comment with your code...
+  let baseUrl = 'https://creativecommons.org/licenses/';
+  let noPermissionUrl = 'https://choosealicense.com/no-permission/';
+  
+  // Tryed to use a new way that I found for the previous exercise
+  let licenseMap = {  
+    'CC-BY': 'Creative Commons Attribution License',
+    'CC-BY-NC': 'Creative Commons Attribution-NonCommercial License',
+    'CC-BY-SA': 'Creative Commons Attribution-ShareAlike License',
+    'CC-BY-ND': 'Creative Commons Attribution-NoDerivs License',
+    'CC-BY-NC-SA': 'Creative Commons Attribution-NonCommercial-ShareAlike License',
+    'CC-BY-NC-ND': 'Creative Commons Attribution-NonCommercial-NoDerivs License'
+  };
+  let licenseName = licenseMap[licenseCode] || 'All Rights Reserved';
+  let prefixRemove = licenseCode.replace("CC-","").toLowerCase();
+  let blank = targetBlank ? `target="_blank"` : "";
+
+  if (licenseName !== 'All Rights Reserved') {
+    const url = `${baseUrl}${prefixRemove}/4.0/`;
+    return `<a href="${url}"${blank}>${licenseName}</a>`;
+  } else {
+      return `<a href="${noPermissionUrl}"${blank}>${licenseName}</a>`;
+  }
 }
+console.log(generateLicenseLink('CC-BY-NC'));
+console.log(generateLicenseLink('XYZ', true));
 
 /*******************************************************************************
  * Problem 9 Part 1: convert a value to a Boolean (true or false)
@@ -598,8 +621,31 @@ function generateLicenseLink(licenseCode, targetBlank) {
  ******************************************************************************/
 
 function pureBool(value) {
-  // Replace this comment with your code...
+  let regexTrue = /^(yes|y|oui|o|t|true|vrai|v)$/i;
+  let regexFalse = /^(no|n|non|f|false|faux)$/i;
+  if((typeof value === 'number' && value > 0) || regexTrue.test(value)){
+    return true;
+  } 
+  if((typeof value === 'number' && value <= 0) || regexFalse.test(value)){
+    return false;
+  } 
+  throw new Error("Invalid value!");
 }
+
+try{
+  console.log(pureBool(23));
+  console.log(pureBool(true));
+  console.log(pureBool("YeS"));
+  console.log(pureBool(-23));
+  console.log(pureBool(false));
+  console.log(pureBool("o"));
+  console.log(pureBool("NON"));
+  console.log(pureBool("oui"));
+  console.log(pureBool("hello"));
+}  catch(error){
+  console.error(error.message);
+}
+
 
 /*******************************************************************************
  * Problem 9 Part 2: checking for all True or all False values in a normalized list
@@ -616,16 +662,50 @@ function pureBool(value) {
  ******************************************************************************/
 
 function every() {
-  // Replace this comment with your code...
+  try{
+    for(let textBool of arguments){
+      if(pureBool(textBool)){
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }  catch(error){
+    return false;
+  }
 }
 
 function any() {
-  // Replace this comment with your code...
+  try{
+    for(let textBool of arguments){
+      if(pureBool(textBool)){
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }  catch(error){
+    return false;
+  }
 }
 
 function none() {
-  // Replace this comment with your code...
+  try{
+    for(let textBool of arguments){
+      if(pureBool(textBool)){
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }  catch(error){
+    return false;
+  }
 }
+
+console.log(every('Y', 'yes', 1));
+console.log(any('Y', 'no', 1));
+console.log(none('Y', 'invalid', 1));
 
 /*******************************************************************************
  * Problem 10 - build a URL
@@ -679,6 +759,25 @@ function none() {
  ******************************************************************************/
 
 function buildUrl(query, order, count, license) {
-  // Replace this comment with your code...
-  //returns the properly formatted iNaturlist URL
+  let baseUrl = 'https://api.inaturalist.org/v2/observations?query=';
+
+  // First validate the entered information
+  if (typeof count !== 'number' || count < 1 || count > 50) {
+    throw new Error('Count must be a number between 1 and 50.');
+  }
+  if (order !== 'ascending' && order !== 'descending') {
+      throw new Error('Order must be either "ascending" or "descending".');
+  }
+  let validLicenses = ['none', 'any', 'cc-by', 'cc-by-nc', 'cc-by-sa', 'cc-by-nd', 'cc-by-nc-sa', 'cc-by-nc-nd'];
+  if (!validLicenses.includes(license)) {
+      throw new Error('Invalid license.');
+  }
+
+  return baseUrl + `'${encodeURIComponent(query)}'&order=${order}&count=${count}&license=${license}`;
+}
+
+try {
+  console.log(buildUrl('Monarch Butterfly', 'ascending', 25, 'cc-by'));
+} catch (error) {
+  console.error(error.message);
 }
