@@ -273,37 +273,37 @@
  *
  ******************************************************************************/
 
-function normalizeCoord(coordinateStr) {
-  let coordRegex = /-?\d+\.\d+/g;
-  const coordinates = coordinateStr.match(coordRegex);
+// function normalizeCoord(coordinateStr) {
+//   let coordRegex = /-?\d+\.\d+/g;
+//   const coordinates = coordinateStr.match(coordRegex);
 
-  if (coordinates.length === 2) {
-    let latitude, longitude;
-    if (coordinateStr.startsWith("[")) {
-      latitude = parseFloat(coordinates[1]);
-      longitude = parseFloat(coordinates[0]);
-    } else {
-      latitude = parseFloat(coordinates[0]);
-      longitude = parseFloat(coordinates[1]);
-    }
+//   if (coordinates.length === 2) {
+//     let latitude, longitude;
+//     if (coordinateStr.startsWith("[")) {
+//       latitude = parseFloat(coordinates[1]);
+//       longitude = parseFloat(coordinates[0]);
+//     } else {
+//       latitude = parseFloat(coordinates[0]);
+//       longitude = parseFloat(coordinates[1]);
+//     }
       
-    if (latitude >= -90 || latitude <= 90 || longitude >= -180 || longitude <= 180) {
-      return `(${latitude}, ${longitude})`;
-    } else {
-      throw new Error("Invalid coordinates: Latitude must be between -90 and 90, Longitude must be between -180 and 180.");
-    }
-  } else {
-    throw new Error("Invalid coordinate format.");
-  }
-}
+//     if (latitude >= -90 || latitude <= 90 || longitude >= -180 || longitude <= 180) {
+//       return `(${latitude}, ${longitude})`;
+//     } else {
+//       throw new Error("Invalid coordinates: Latitude must be between -90 and 90, Longitude must be between -180 and 180.");
+//     }
+//   } else {
+//     throw new Error("Invalid coordinate format.");
+//   }
+// }
 
-// Test cases
-try{
-  console.log(normalizeCoord("42.9755,-77.4369")); 
-  console.log(normalizeCoord("[-77.4369, 42.9755]")); 
-} catch(error) {
-  console.error(error.message);
-}
+// // Test cases
+// try{
+//   console.log(normalizeCoord("42.9755,-77.4369")); 
+//   console.log(normalizeCoord("[-77.4369, 42.9755]")); 
+// } catch(error) {
+//   console.error(error.message);
+// }
 
 
 
@@ -333,9 +333,24 @@ try{
 
  ******************************************************************************/
 
-function formatCoords(...values) {
-  // Replace this comment with your code...
-}
+// function formatCoords(...coordinateStr) {
+//   let formattedCoords = []; // Store values
+
+//   for(let coord of coordinateStr){
+//     try{
+//       let coordinate = normalizeCoord(coord);
+//       formattedCoords.push(coordinate);
+//     } catch(error){
+//       console.error();
+//     } 
+//   }
+
+//   console.log(`(${formattedCoords.join(', ')})`);
+// }
+
+// formatCoords("42.9755,-77.4369", "[-62.1234, 42.9755]", "300,-9000");
+// formatCoords("42.9755,-77.4369", "[-62.1234, 42.9755]");
+
 
 /*******************************************************************************
  * Problem 7: determine MIME type from filename extension
@@ -359,26 +374,26 @@ function formatCoords(...values) {
  * Your mimeFromFilename() function should support all of the following extensions
  * with and without the leading '.':
  *
- * - .html, .htm --> text/html
- * - .css --> text/css
- * - .js --> text/javascript
- * - .jpg, .jpeg --> image/jpeg
- * - .gif --> image/gif
- * - .bmp --> image/bmp
- * - .ico, .cur --> image/x-icon
+ * - .html, .htm --> text/html 
+ * - .css --> text/css 
+ * - .js --> text/javascript 
+ * - .jpg, .jpeg --> image/jpeg 
+ * - .gif --> image/gif 
+ * - .bmp --> image/bmp 
+ * - .ico, .cur --> image/x-icon 
  * - .png --> image/png
  * - .svg --> image/svg+xml
  * - .webp --> image/webp
- * - .mp3 --> audio/mp3
- * - .wav --> audio/wav
- * - .mp4 --> video/mp4
- * - .webm --> video/webm
- * - .json --> application/json
- * - .mpeg --> video/mpeg
- * - .csv --> text/csv
+ * - .mp3 --> audio/mp3 
+ * - .wav --> audio/wav 
+ * - .mp4 --> video/mp4 
+ * - .webm --> video/webm 
+ * - .json --> application/json 
+ * - .mpeg --> video/mpeg 
+ * - .csv --> text/csv 
  * - .ttf --> font/ttf
  * - .woff --> font/woff
- * - .zip --> application/zip
+ * - .zip --> application/zip 
  * - .avi --> video/x-msvideo
  *
  *
@@ -390,9 +405,125 @@ function formatCoords(...values) {
  ******************************************************************************/
 
 function mimeFromFilename(filename) {
-  // Replace this comment with your code...
-  // NOTE: Use a switch statement in your solution.
+  let type = "";
+  let subtype = "";
+  let file = filename.split(".");
+  let fileEnd = file[1];
+  //  Type if statment
+  if(fileEnd==="html"||fileEnd==="htm"||fileEnd==="css"||fileEnd==="js"||fileEnd==="csv"||fileEnd==="txt"){
+    type = "text";
+  } else if(fileEnd==="jpg"||fileEnd==="jpeg"||fileEnd==="gif"||fileEnd==="bpm"||fileEnd==="ico"||fileEnd==="cur"||fileEnd==="png"||fileEnd==="svg"||fileEnd==="webp"){
+    type = "image";
+  } else if(fileEnd==="mp3"||fileEnd==="wav"){
+    type = "audio";
+  } else if(fileEnd==="mp4"||fileEnd==="webm"||fileEnd==="mpeg"||fileEnd==="avi"){
+    type = "video";
+  } else if(fileEnd==="ttf"||fileEnd==="woff"){
+    type = "font";
+  } else {
+      type = "application";
+  }
+  //  Subtype if statment
+  if(fileEnd==="html"||fileEnd==="htm"){
+    subtype = "html";
+  } else if(fileEnd === "txt"){
+    subtype = "plain";
+  } else if(fileEnd === "css"){
+    subtype = "css";
+  } else if(fileEnd === "js"){
+    subtype = "javascript";
+  } else if(fileEnd==="jpg"||fileEnd==="jpeg"){
+    subtype = "jpeg";
+  } else if(fileEnd==="gif"){
+    subtype = "gif";
+  } else if(fileEnd==="bmp"){
+    subtype = "bmp";
+  } else if(fileEnd==="ico"||fileEnd==="cur"){
+    subtype = "x-icon";
+  } else if(fileEnd==="png"){
+    subtype = "png";
+  } else if(fileEnd==="svg"){
+    subtype = "svg+xml";
+  } else if(fileEnd==="webp"){
+    subtype = "webp";
+  } else if(fileEnd==="mp3"){
+    subtype = "mp3";
+  } else if(fileEnd==="wav"){
+    subtype = "wav";
+  } else if(fileEnd==="mp4"){
+    subtype = "mp4";
+  } else if(fileEnd==="webm"){
+    subtype = "webm";
+  } else if(fileEnd==="json"){
+    subtype = "json";
+  } else if(fileEnd==="mpeg"){
+    subtype = "mpeg";
+  } else if(fileEnd==="csv"){
+    subtype = "csv";
+  } else if(fileEnd==="ttf"){
+    subtype = "ttf";
+  } else if(fileEnd==="woff"){
+    subtype = "woff";
+  } else if(fileEnd==="zip"){
+    subtype = "zip";
+  } else if(fileEnd==="avi"){
+    subtype = "x-msvideo";
+  } else {
+    subtype = "octet-stream";
+  }
+
+  return `${type}/${subtype}`;
+
+
+// I was looking on the internet is there an easier way to solve this problem and I found this. 
+// I am not sure how this works. Can you please explain it for me. The part that I do not understand is
+// what thoes [] bracets do in the code???
+  // let extensionMap = {
+  //   'txt' : 'text/plain',
+  //   'html': 'text/html',
+  //   'htm': 'text/html',
+  //   'css': 'text/css',
+  //   'js': 'text/javascript',
+  //   'jpg': 'image/jpeg',
+  //   'jpeg': 'image/jpeg',
+  //   'gif': 'image/gif',
+  //   'bmp': 'image/bmp',
+  //   'ico': 'image/x-icon',
+  //   'cur': 'image/x-icon',
+  //   'png': 'image/png',
+  //   'svg': 'image/svg+xml',
+  //   'webp': 'image/webp',
+  //   'mp3': 'audio/mp3',
+  //   'wav': 'audio/wav',
+  //   'mp4': 'video/mp4',
+  //   'webm': 'video/webm',
+  //   'json': 'application/json',
+  //   'mpeg': 'video/mpeg',
+  //   'csv': 'text/csv',
+  //   'ttf': 'font/ttf',
+  //   'woff': 'font/woff',
+  //   'zip': 'application/zip',
+  //   'avi': 'video/x-msvideo'
+  // };
+
+  // let defaultType = 'application/octet-stream';
+
+  // let fileParts = filename.split('.');
+  // let extension = fileParts.length > 1 ? fileParts[fileParts.length - 1] : '';
+
+  // return extensionMap[extension.toLowerCase()] || defaultType;
 }
+
+console.log(mimeFromFilename('/User/Documents/readme.txt')); 
+console.log(mimeFromFilename('index.html'));
+console.log(mimeFromFilename('style.css')); 
+console.log(mimeFromFilename('script.js')); 
+console.log(mimeFromFilename('image.jpg')); 
+console.log(mimeFromFilename('data.json')); 
+console.log(mimeFromFilename('file.unknown')); 
+
+
+
 
 /*******************************************************************************
  * Problem 8, Part 1: generate license text and link from license code.
